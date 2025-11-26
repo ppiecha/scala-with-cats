@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 type Continuation = Double => Call
 enum Call {
   case Continue(value: Double, k: Continuation)
@@ -23,7 +24,7 @@ enum Expression {
       case Mult(left, right) => Call.Loop(left, l => Call.Loop(right, r => Call.Continue(l * r, k)))
       case Div(left, right)  => Call.Loop(left, l => Call.Loop(right, r => Call.Continue(l / r, k)))
     }
-
+    @tailrec
     def trampoline(next: Call): Double = next match {
       case Call.Continue(d, k) => trampoline(k(d))
       case Call.Loop(exp, k)   => trampoline(loop(exp, k))
