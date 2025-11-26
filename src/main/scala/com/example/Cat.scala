@@ -7,6 +7,8 @@ final case class Cat(name: String, age: Int, color: String)
 
 object Cat {
     given Show[Cat] = Show.show(cat => s"${cat.name} is a ${cat.age} year-old ${cat.color} cat")
+    given Eq[Cat] with
+      def eqv(x: Cat, y: Cat): Boolean = x.name === y.name && x.age === y.age && x.color === y.color
 }
 
 @main
