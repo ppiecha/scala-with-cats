@@ -6,4 +6,8 @@ showInt.show(1)
 1.show
 
 
+"t" + 1
+"s" ++ "t"
+
+
 
