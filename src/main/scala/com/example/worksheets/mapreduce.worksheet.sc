@@ -37,8 +37,3 @@ def foldMapCats[A, B: Monoid](values: Vector[A])(f: A => B): B = values.foldMap(
 
 val future = parallelFoldMapCats((1 to 1000).toVector)(_ * 1000)
 Await.result(future, 1.second)
-
-
-
-
-
